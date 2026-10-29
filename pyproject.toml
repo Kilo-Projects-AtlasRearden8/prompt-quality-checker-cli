@@ -17,6 +17,3 @@ prompt-quality = "prompt_quality.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-
-[tool.setuptools.package-data]
-prompt_quality = ["py.typed"]

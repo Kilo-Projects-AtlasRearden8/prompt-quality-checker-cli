@@ -18,14 +18,16 @@ Markdown report. No API keys or third-party network calls by default.
 - `prompt_quality/reporter.py` — Markdown report with summary table and per-
   category detail sections
 - `prompt_quality/cli.py` / `__main__.py` — `prompt-quality` command and
-  `python -m prompt_quality`; `--endpoint`, `--model`, `--api-key`, `--output`
+  `python -m prompt_quality`; `--endpoint`, `--model`, `--api-key`, `--output`,
+  plus `PQC_ENDPOINT`/`PQC_MODEL`/`PQC_API_KEY` environment variables
 - `tests/` — 10 unit tests backed by local mock endpoints (no network, no
   keys): client payload/auth/error handling, reviewer scoring, reporter
   structure, CLI end-to-end
 - `pyproject.toml` — package metadata and `prompt-quality` console script
 - `LICENSE` — MIT, Copyright (c) 2026 Asdale Dynamics, LLC
-- `README.md` — install, usage, local-first policy, credits Asdale Dynamics,
-  LLC
+- `README.md` — plain-English install, usage, worked example, troubleshooting,
+  local-first policy, credits Asdale Dynamics, LLC
+- `STATUS.md` — this file
 
 ## How to run
 
@@ -39,6 +41,9 @@ python -m prompt_quality drafts/myprompt.txt   # without installing
 python -m unittest discover -s tests          # mock endpoints, offline
 ```
 
+Ollama must be running at the configured endpoint (default
+`http://localhost:11434/v1`) with a model pulled (e.g. `ollama pull llama3.2`).
+
 ## Verification results
 
 - `pip install -e . --no-deps` succeeds in a fresh venv (system Python is
@@ -46,8 +51,10 @@ python -m unittest discover -s tests          # mock endpoints, offline
 - `python -m unittest discover -s tests`: 10 tests OK
 - CLI end-to-end through a mock endpoint writes a Markdown report with the
   overall score and all four categories
-- Unreachable endpoint yields a friendly error message and exit code 1, with
-  no keys, secrets, or personal data anywhere in the repo
+- `python -m prompt_quality --help` exits 0 and documents all flags
+- Unreachable endpoint yields a friendly error message and exit code 1
+- No keys, secrets, or personal data anywhere in the repo
+- No `.github/workflows` files present
 
 ## Known gaps
 
