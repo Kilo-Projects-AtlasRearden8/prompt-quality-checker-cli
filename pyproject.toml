@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prompt-quality-checker"
+version = "0.1.0"
+description = "Local-first CLI to review prompt drafts for clarity, variables, bias, and safety using a configurable OpenAI-compatible endpoint (default Ollama), with a local rubric and Markdown report."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Asdale Dynamics, LLC"}]
+keywords = ["prompt", "review", "ollama", "openai", "cli", "local-llm"]
+
+[project.scripts]
+prompt-quality = "prompt_quality.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+prompt_quality = ["py.typed"]
